@@ -1,0 +1,1 @@
+ALTER TABLE "gadgets" ADD COLUMN "updated_at" timestamp DEFAULT now();
