@@ -1,9 +1,26 @@
 services:
+  pgdb:
+    image: postgres:latest
+    container_name: pgdb
+    environment:
+      POSTGRES_DB: cybergaz
+      POSTGRES_USER: gaz
+      POSTGRES_PASSWORD: cybergaz
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gaz -d cybergaz"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
   server:
     build:
       dockerfile: Dockerfile
     container_name: server
-    command: "npm run start"
+    command: ["sh", "-c", "npm run schema && npm run dev"]
     ports:
       - "3000:3000"
     environment:
