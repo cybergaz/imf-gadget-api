@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "main": "src/server.ts",
     "scripts": {
-        "start": "npx drizzle-kit generate && npx drizzle-kit migrate",
+        "start": "npx drizzle-kit generate && npx drizzle-kit migrate && npx tsx src/server.ts",
         "dev": "npx tsx src/server.ts",
         "schema": "npx drizzle-kit generate && npx drizzle-kit migrate"
     },
